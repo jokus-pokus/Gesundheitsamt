@@ -2,6 +2,7 @@ import pandas as pd
 import glob
 from datetime import date
 from wetterdienst import Wetterdienst
+import geopandas as gpd
 
 import requests
 import json
@@ -13,24 +14,14 @@ print("Today's date:", today)
 def DatenVergangenheitHolen():
 
     # Daten des 7TIW holen
-    download_dates = pd.date_range(start='20200402', end=today).strftime('%Y%m%d')
-
-    base_url = ("https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/fallzahlen_archiv/")
-
-    list_of_url = [base_url+date+str('_LK_coronazahlen.csv') for date in download_dates]
-
-    df7TIW = pd.DataFrame()
-
-    for url, date in zip(list_of_url,download_dates):
-        try:
-            tempdf7TIW = pd.read_csv(url, encoding='latin-1',delimiter=';',decimal=',')
-            tempdf7TIW['Date'] = date
-            df7TIW = pd.concat([df7TIW, tempdf7TIW])
-        except:
-            print(str('no data for ')+date)
-
-    df7TIWnbg = df7TIW.loc[df7TIW['Regierungsbezirk Land-/Stadtkreis'] == 'SK Nürnberg']
-    df7TIWnbg.loc[:,'Date'] = pd.to_datetime(df7TIWnbg['Date'], format='%Y%m%d')
+    dfgeo = gpd.read_file('https://opendata.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0.geojson')
+    dfgeo = dfgeo.loc[dfgeo['Landkreis'] == 'SK Nürnberg']
+    dfgeo = dfgeo.groupby(['Refdatum']).sum()
+    dfgeo = dfgeo.reset_index()
+    df1 = pd.DataFrame(dfgeo)
+    df1['Summe7Tage'] = df1.AnzahlFall.rolling(min_periods=1, window=7).sum()
+    df1['7TIW'] = (df1.Summe7Tage/518365)*100000
+    df1 = df1[['Refdatum','7TIW']]
 
     #Wetterdaten für Nbg holen
     API = Wetterdienst("dwd", "observation")
@@ -45,14 +36,14 @@ def DatenVergangenheitHolen():
     ).filter(station_id=[3668]) #Wetter für Nbg
     stations = request.df
     values = request.values.all().df
-    values = values.loc[values['PARAMETER'] == 'SUNSHINE_DURATION']
+    values = values.loc[values['PARAMETER'] == 'TEMPERATURE_AIR_200']
 
     #Corona Restriktionen holen / später für Bayern?
     dfCoronaRestr = pd.read_csv('https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_latest.csv')
     dfCoronaRestr = dfCoronaRestr[dfCoronaRestr.CountryName == 'Germany']
     stringency = dfCoronaRestr[['Date','StringencyIndexForDisplay']]
 
-    return df7TIWnbg,values,stringency
+    return df1,values,stringency
 
 def FeiertageHolen():
     # Feiertage holen
@@ -63,4 +54,5 @@ def FeiertageHolen():
     holydaysComp = pd.concat([holidaysdf2020datum,holidaysdf2021datum]).fillna(0)
     holydaysComp.to_csv('holydays.csv')
 
-CoronaDatenNbg, Wetterdaten, Restriktionen = DatenVergangenheitHolen()
+#CoronaDatenNbg, Wetterdaten, Restriktionen = DatenVergangenheitHolen()
+#CoronaDatenNbg.head()
