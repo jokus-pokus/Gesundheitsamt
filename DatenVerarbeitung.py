@@ -39,4 +39,4 @@ def DatenVerarbeitung():
 
     return CoronaWerte
 
-df = DatenVerarbeitung()
+#df = DatenVerarbeitung()
