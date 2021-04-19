@@ -34,11 +34,8 @@ future = m.make_future_dataframe(periods=10,include_history=False)
 future = future.set_index('ds')
 
 future['Temperatur'] = future.join(WetterVorhersage)
-<<<<<<< HEAD
 future['ResNbg'] = df_test.ResNbg.iloc[-1]
-=======
-future['ResNbg'] = 75
->>>>>>> 0e40d95597946761b07f5f8a6b1cbcdffaffb23a
+
 future = future.reset_index()
 
 forecast = m.predict(future)
@@ -46,9 +43,6 @@ forecast = m.predict(future)
 fig = m.plot(forecast)
 ax = fig.gca()
 ax.set_title(today, size=34)
-<<<<<<< HEAD
 plt.tight_layout()
-=======
->>>>>>> 0e40d95597946761b07f5f8a6b1cbcdffaffb23a
 fig.savefig('Vorhersagen/'+str(today)+'.png')
 
