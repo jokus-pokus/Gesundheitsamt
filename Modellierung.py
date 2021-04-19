@@ -9,10 +9,6 @@ from datetime import date
 today = date.today()
 
 df = DatenVerarbeitung()
-<<<<<<< HEAD
-=======
-
->>>>>>> 0e40d95597946761b07f5f8a6b1cbcdffaffb23a
 WetterVorhersage = WetterVorhersageNBG()
 
 df_test = df
