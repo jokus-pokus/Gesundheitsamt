@@ -1,5 +1,5 @@
 import pandas as pd
-from matplotlib import pyplot as plt
+#from matplotlib import pyplot as plt
 from fbprophet import Prophet
 from DatenSammlung import DatenVergangenheitHolen, FeiertageHolen, WetterVorhersageNBG
 from DatenVerarbeitung import DatenVerarbeitung
