@@ -1,8 +1,8 @@
 matplotlib
+pystan
 fbprophet
 pandas
 wetterdienst 
 geopandas
 numpy
 requests
-pystan
