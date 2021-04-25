@@ -5,3 +5,4 @@ wetterdienst
 geopandas
 numpy
 requests
+pystan
