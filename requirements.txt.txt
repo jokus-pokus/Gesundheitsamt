@@ -1,7 +1,0 @@
-matplotlib
-fbprophet
-pandas
-wetterdienst 
-geopandas
-numpy
-requests
