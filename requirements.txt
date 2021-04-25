@@ -2,7 +2,7 @@ matplotlib
 pystan==2.19.1.1
 fbprophet
 pandas
-wetterdienst 
+wetterdienst==0.15.0 
 geopandas
 numpy
 requests
