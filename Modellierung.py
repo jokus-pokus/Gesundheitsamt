@@ -3,6 +3,7 @@ from matplotlib import pyplot as plt
 from fbprophet import Prophet
 from DatenSammlung import DatenVergangenheitHolen, FeiertageHolen, WetterVorhersageNBG
 from DatenVerarbeitung import DatenVerarbeitung
+import streamlit as st
 
 from datetime import date
 
@@ -36,9 +37,10 @@ future = future.reset_index()
 
 forecast = m.predict(future)
 
-fig = m.plot(forecast)
-ax = fig.gca()
-ax.set_title(today, size=34)
-plt.tight_layout()
-fig.savefig('Vorhersagen/'+str(today)+'.png')
+#fig = m.plot(forecast)
+#ax = fig.gca()
+#ax.set_title(today, size=34)
+#plt.tight_layout()
+#fig.savefig('Vorhersagen/'+str(today)+'.png')
 
+chart = st.line_chart(forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].set_index('ds'))
