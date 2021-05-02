@@ -18,7 +18,7 @@ print("Today's date:", today)
 def DatenVergangenheitHolen():
 
     # Daten des 7TIW holen
-    dfgeo = gpd.read_file('https://opendata.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0.geojson')
+    dfgeo = gpd.read_file('https://opendata.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0.geojson',ignore_geometry=True)
     dfgeo = dfgeo.loc[dfgeo['Landkreis'] == 'SK Nürnberg']
     dfgeo = dfgeo.groupby(['Refdatum']).sum()
     dfgeo = dfgeo.reset_index()
@@ -43,7 +43,7 @@ def DatenVergangenheitHolen():
     values = values.loc[values['PARAMETER'] == 'TEMPERATURE_AIR_200']
 
     #Corona Restriktionen holen / später für Bayern?
-    dfCoronaRestr = pd.read_csv('https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_latest.csv')
+    dfCoronaRestr = pd.read_csv('https://raw.githubusercontent.com/OxCGRT/covid-policy-tracker/master/data/OxCGRT_latest.csv', usecols=["Date", "StringencyIndexForDisplay", "CountryName"])
     dfCoronaRestr = dfCoronaRestr[dfCoronaRestr.CountryName == 'Germany']
     stringency = dfCoronaRestr[['Date','StringencyIndexForDisplay']]
 
