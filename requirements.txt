@@ -1,6 +1,6 @@
 matplotlib
 pystan==2.19.1.1
-fbprophet
+fbprophet==0.7.1
 pandas
 wetterdienst==0.15.0 
 geopandas
