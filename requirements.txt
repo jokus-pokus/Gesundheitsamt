@@ -6,3 +6,5 @@ wetterdienst==0.15.0
 geopandas
 numpy
 requests
+plotly==4.14.3
+streamlit
