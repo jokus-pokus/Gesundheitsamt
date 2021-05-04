@@ -1,5 +1,4 @@
 fiona==1.8.19
-gdal
 numpy==1.19.5
 pandas==1.2.4
 convertdate==2.3.0
