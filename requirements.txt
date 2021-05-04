@@ -1,5 +1,5 @@
 fiona==1.8.19
-gdal==3.3.0
+gdal==3.3
 convertdate==2.3.0
 matplotlib==3.4.1
 pystan==2.19.1.1
