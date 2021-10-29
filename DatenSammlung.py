@@ -18,7 +18,9 @@ print("Today's date:", today)
 def DatenVergangenheitHolen():
 
     # Daten des 7TIW holen
-    dfgeo = gpd.read_file('https://opendata.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0.geojson',ignore_geometry=True)
+    #dfgeo = gpd.read_file('https://opendata.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0.geojson',ignore_geometry=True)
+    #dfgeo = gpd.read_file("https://opendata.arcgis.com/datasets/45258e51f57d43efb612f700a876ae8f_0.geojson",ignore_geometry=True)
+    dfgeo = pd.read_csv("https://opendata.arcgis.com/api/v3/datasets/45258e51f57d43efb612f700a876ae8f_0/downloads/data?format=csv&spatialRefId=4326")
     dfgeo = dfgeo.loc[dfgeo['Landkreis'] == 'SK Nürnberg']
     dfgeo = dfgeo.groupby(['Refdatum']).sum()
     dfgeo = dfgeo.reset_index()
