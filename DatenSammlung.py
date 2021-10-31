@@ -15,7 +15,7 @@ import numpy as np
 today = date.today()
 print("Today's date:", today)
 
-@st.cache
+#@st.cache
 def DatenVergangenheitHolen():
 
     # Daten des 7TIW holen
