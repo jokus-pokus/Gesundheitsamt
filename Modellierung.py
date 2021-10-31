@@ -13,6 +13,7 @@ df = DatenVerarbeitung()
 WetterVorhersage = WetterVorhersageNBG()
 
 df_test = df
+del df
 
 trainings_zeitraum_von = '2020-8-01'
 df_test = df_test.loc[df_test.index>trainings_zeitraum_von].copy()
@@ -44,3 +45,7 @@ forecast = m.predict(future)
 #fig.savefig('Vorhersagen/'+str(today)+'.png')
 
 chart = st.line_chart(forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].set_index('ds'))
+
+del df_test
+del future
+del forecast
