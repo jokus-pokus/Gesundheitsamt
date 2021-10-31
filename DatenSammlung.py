@@ -4,7 +4,7 @@ from datetime import date
 from wetterdienst import Wetterdienst
 import geopandas as gpd
 from wetterdienst import Wetterdienst, Resolution, Period
-
+import streamlit as st 
 from wetterdienst.dwd.forecasts import DwdMosmixType
 
 
@@ -15,6 +15,7 @@ import numpy as np
 today = date.today()
 print("Today's date:", today)
 
+@st.cache
 def DatenVergangenheitHolen():
 
     # Daten des 7TIW holen
