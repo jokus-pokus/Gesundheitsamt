@@ -49,3 +49,4 @@ chart = st.line_chart(forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].set_i
 del df_test
 del future
 del forecast
+del WetterVorhersage
