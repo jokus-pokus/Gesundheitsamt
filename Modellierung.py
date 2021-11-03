@@ -52,4 +52,6 @@ del future
 del forecast
 del WetterVorhersage
 del chart
+del m
+del today
 gc.collect()
