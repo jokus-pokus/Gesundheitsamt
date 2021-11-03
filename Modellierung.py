@@ -4,6 +4,7 @@ from fbprophet import Prophet
 from DatenSammlung import DatenVergangenheitHolen, FeiertageHolen, WetterVorhersageNBG
 from DatenVerarbeitung import DatenVerarbeitung
 import streamlit as st
+import gc
 
 from datetime import date
 
@@ -50,3 +51,4 @@ del df_test
 del future
 del forecast
 del WetterVorhersage
+gc.collect()
