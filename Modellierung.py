@@ -51,4 +51,5 @@ del df_test
 del future
 del forecast
 del WetterVorhersage
+del chart
 gc.collect()
