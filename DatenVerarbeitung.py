@@ -1,7 +1,8 @@
 import pandas as pd
 from DatenSammlung import DatenVergangenheitHolen, FeiertageHolen
 from datetime import date, timedelta
-
+from streamlit import caching
+caching.clear_cache()
 
 today = date.today()
 yesterday = today - timedelta(days = 1)
