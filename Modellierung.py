@@ -6,6 +6,10 @@ from DatenVerarbeitung import DatenVerarbeitung
 import streamlit as st
 import gc
 
+from streamlit import caching
+caching.clear_cache()
+
+
 
 from datetime import date
 
