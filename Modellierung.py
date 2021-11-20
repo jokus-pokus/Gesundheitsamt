@@ -6,8 +6,6 @@ from DatenVerarbeitung import DatenVerarbeitung
 import streamlit as st
 import gc
 
-import os
-os.system('streamlit cache clear')
 
 from datetime import date
 
