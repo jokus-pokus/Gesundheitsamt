@@ -6,9 +6,8 @@ from DatenVerarbeitung import DatenVerarbeitung
 import streamlit as st
 import gc
 
-from streamlit import caching
-caching.clear_cache()
 
+st.legacy_caching.clear_cache() #clear cache
 
 
 from datetime import date
