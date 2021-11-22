@@ -7,7 +7,7 @@ import streamlit as st
 import gc
 
 
-st.legacy_caching.clear_cache() #clear cache
+#st.legacy_caching.clear_cache() #clear cache
 
 
 from datetime import date
